@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="id_category_administrators" model="ir.module.category">
+        <field name="name">Administartors</field>
+        <field name="description">administrate module</field>
+    </record>
+
+    <record id="id_university_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="id_category_administrators"/>
+    </record>
+
+    <record id="id_university_teacher" model="res.groups">
+        <field name="name">Teacher</field>
+        <field name="category_id" ref="id_category_administrators"/>
+
+    </record>
+
+    <record id="id_university_employee" model="res.groups">
+        <field name="name">Employee</field>
+        <field name="category_id" ref="id_category_administrators"/>
+
+    </record>
+
+    <record id="id_student_rule" model="ir.rule">
+        <field name="name">see only his student</field>
+        <field name="model_id" ref="model_university_student"/>
+        <field name="domain_force">[('l_name','!=','msaddak')]</field>
+        <field name="groups" eval="[(4, ref('id_university_teacher'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+
+    </record>
+
+
+</odoo>
